@@ -1,19 +1,38 @@
 import React from "react";
-import {Image, Text, View} from "react-native";
+import {Image,Platform, Text, View, TouchableOpacity, TouchableNativeFeedback} from "react-native";
 import {ChatRoom} from "../../types";
 import styles from "./style";
 import moment from 'moment'
+import {useNavigation} from '@react-navigation/native'
 
 export type ChatListItemProps = {
     chatRoom : ChatRoom;
 }
 
 const ChatListItem = (props : ChatListItemProps) => {
+
+    let Touchable = TouchableOpacity
+    if (Platform.OS === 'android' && Platform.Version >= 21) {
+        Touchable = TouchableNativeFeedback;
+    }
+
+    const navigation = useNavigation();
+
     const {chatRoom} = props;
 
     const user = chatRoom.users[1];
 
+    const onClick = () => {
+        //console.warn(`Clicked on ${user.name}`)
+        navigation.navigate('ChatRoom', {
+            id : chatRoom.id,
+            name : user.name,
+            imageUri : user.imageUri,
+        })
+    }
+
     return (
+        <Touchable onPress={onClick}>
         <View>
             <View style={styles.container}>
                 <View style={styles.leftContainer}>
@@ -34,6 +53,7 @@ const ChatListItem = (props : ChatListItemProps) => {
                 {null}
             </View>
         </View>
+        </Touchable>
     )
 }
 

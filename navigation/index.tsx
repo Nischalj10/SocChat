@@ -6,9 +6,10 @@
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import {ColorSchemeName, View} from 'react-native';
-import {MaterialCommunityIcons, Octicons} from "@expo/vector-icons";
+import {ColorSchemeName, Image, Text, View, StyleSheet} from 'react-native';
+import {MaterialCommunityIcons, Octicons, Ionicons, FontAwesome, MaterialIcons} from "@expo/vector-icons";
 
+import ChatRoomScreen from "../screens/ChatRoomScreen";
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from '../types';
 import MainTabNavigator from './MainTabNavigator';
@@ -55,7 +56,71 @@ function RootNavigator() {
               }
           }}
       />
+
+      <Stack.Screen
+          name="ChatRoom"
+          component={ChatRoomScreen}
+          options={({route}) => ({
+              headerTitle : () => {
+                  return (
+                      <View style={styles.container}>
+                          <Text style={styles.name}>  {route.params.name}</Text>
+                      </View>
+                  )
+              },
+              headerBackImage : () => {
+                  return (
+                      <View style={styles.container}>
+                          <Ionicons name={'arrow-back'} size={24} color={'white'}/>
+                          <Image source={{uri : route.params.imageUri}} style={styles.image}/>
+                      </View>
+                  )
+              },
+              headerRight : () => {
+                  return (
+                      <View style={styles.container2}>
+                          <FontAwesome name={"video-camera"} style={styles.icon1} color={'white'} size={20}/>
+                          <MaterialIcons name={"call"} size={22} style={styles.icon2} color={'white'}/>
+                          <MaterialCommunityIcons name={"dots-vertical"} style={styles.icon3} size={22} color={'white'}/>
+                      </View>
+                  )
+              }
+          })} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+    image : {
+        width : 40,
+        height : 40,
+        borderRadius : 20,
+        marginLeft : 4,
+    },
+    name : {
+        color : 'white',
+        fontWeight : 'bold',
+        fontSize : 18,
+        marginLeft : 10,
+    },
+    container : {
+        flexDirection : 'row',
+        alignItems : 'center',
+        justifyContent : 'flex-start'
+    },
+    container2 : {
+        flexDirection : 'row',
+        alignItems : 'center',
+        justifyContent : 'flex-end',
+    },
+    icon1 : {
+        marginHorizontal : 18,
+    },
+    icon2 : {
+        marginHorizontal : 7,
+    },
+    icon3 : {
+        marginHorizontal : 10,
+    }
+})
