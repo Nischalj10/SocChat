@@ -41,12 +41,14 @@ const InputBox = () => {
                 <Entypo name={'attachment'} size={20} style={styles.icon} color={'grey'}/>
                 {!message && <Fontisto name={'camera'} size={20} style={styles.icon} color={'grey'}/>}
             </View>
-            <Touchable onPress={onPress}>
+
                 <View style={styles.buttonContainer}>
+                    <Touchable onPress={onPress}>
                         {!message ? <MaterialCommunityIcons name={"microphone"} size={28} color={'white'}/> :
                             <MaterialIcons name={'send'} size={28} color={'white'}/>}
+                    </Touchable>
                 </View>
-            </Touchable>
+
         </View>
     )
 }
