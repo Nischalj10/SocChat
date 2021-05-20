@@ -16,5 +16,6 @@
     <orderEntry type="library" name="jquery-3.5.1.slim" level="application" />
     <orderEntry type="library" name="popper.js" level="application" />
     <orderEntry type="library" name="@types/typescript-deferred" level="application" />
+    <orderEntry type="library" name="@types/amplify" level="application" />
   </component>
 </module>

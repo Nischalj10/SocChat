@@ -10,6 +10,11 @@
       "StackName": "amplify-whatsapp-dev-180942",
       "StackId": "arn:aws:cloudformation:us-east-1:758139468604:stack/amplify-whatsapp-dev-180942/75a691c0-b968-11eb-a233-0e14a19417fd",
       "AmplifyAppId": "d2adt36555juio"
+    },
+    "categories": {
+      "auth": {
+        "whatsappc07f1e0e": {}
+      }
     }
   }
 }
