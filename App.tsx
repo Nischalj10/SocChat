@@ -5,6 +5,7 @@ import {useEffect} from "react";
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+// @ts-ignore
 import {withAuthenticator} from 'aws-amplify-react-native'
 import {Auth, API, graphqlOperation} from 'aws-amplify'
 import {getUser} from "./src/graphql/queries";
@@ -34,7 +35,6 @@ function App() {
     const fetchUser = async () => {
       //get authenticated user from auth
       const userInfo = await Auth.currentAuthenticatedUser({bypassCache : true});
-      //console.log(userInfo)
 
       if(userInfo) {
         //get the user from backend with the userId from auth
@@ -54,10 +54,9 @@ function App() {
           id : userInfo.attributes.sub,
           name : userInfo.username,
           imageUri : getRandomImage(),
-          status : 'Hey There! I\'m using Whatsapp '
+          status : 'Hey There! I am using Whatsapp '
         }
 
-      console.log(userInfo)
 
         //if there is no user with the same id in our backend, then create one
 
@@ -65,7 +64,6 @@ function App() {
             createUser,
             {input : newUser}
         ))
-
       }
     }
 

@@ -3,5 +3,6 @@
   <component name="JavaScriptLibraryMappings">
     <file url="PROJECT" libraries="{4ce73dcee6, @types/amplify, @types/react, @types/react-dom, @types/react-native, @types/typescript-deferred, bootstrap, jquery-3.5.1.slim, popper.js}" />
     <includedPredefinedLibrary name="HTTP Response Handler" />
+    <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>
